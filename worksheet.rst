@@ -101,7 +101,9 @@ Key Reuse attacks are based on the associativity property of the XOR operator:
 In fact, given:
 
   M1 = Message A
+
   M2 = Message B
+
   K  = Key used to encrypt both message A and message B
 
 One could write:
@@ -111,6 +113,7 @@ One could write:
 If we assign names C1 and C2 to the ciphertexts,
 
   C1 = M1 XOR K
+
   C2 = M2 XOR K
 
 we get:
@@ -182,8 +185,8 @@ of two words in the English language, which is reasonably small.
 
 
 
-Malleability
-____________
+Malleability (Bit-flipping attack)
+__________________________________
 
 The term "malleability" refers to the possibility of the ciphertext being
 altered to decrypt to a different plaintext message. This generally is an
@@ -192,9 +195,10 @@ context where man-in-the-middle or similar attacks are possible (e.g.
 Internet connections).
 
 In this exercise we will demonstrate that OTP encryption is malleable and
-susceptible to ciphertext alteration. In particular an attacker, even without
+susceptible to ciphertext alteration, also known as bit-flipping attacks.
+In particular an attacker, even without
 being able to decrypt the message, given they knows part of the message,
-they can also modify the content of the ciphertext to a different ciphertext.
+can also modify the content of the ciphertext to a different ciphertext.
 
 Using Usermin, browse to `/home/students/otp/`. You will find a Python
 file named `exercise2.py`.
@@ -254,6 +258,5 @@ are executed by using replaying the same message or the altered message at
 a different time.
 
 
-# TODO Replay attacks?
 # TODO Complete.
 # TODO Spell checking.

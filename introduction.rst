@@ -10,7 +10,7 @@ The objective of this experiment is to:
 
 * Understand simple one-time pad encryption,
 * Understand key reuse attacks in breaking one-time pad ciphertexts,
-* Understand malleability and malleability attacks in one-time pad ciphertexts,
+* Understand malleability and bit-flipping attacks towards one-time pad cryptosystems,
 * Understand the risks and avoid bad utilisation of strong cryptographic primitives.
 
 
