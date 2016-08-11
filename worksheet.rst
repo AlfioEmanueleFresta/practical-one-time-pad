@@ -135,8 +135,8 @@ of two words in the English language, which is reasonably small.
 
 .. topic:: Exercise 1
 
-  Using Usermin, browse to `/home/students/otp/`. You will find a Python
-  file named `exercise1.py`.
+  Using Usermin, browse to ``/home/students/otp/```. You will find a Python
+  file named ```exercise1.py``.
 
   You can edit this file from the Usermin web interface.
 
@@ -200,8 +200,8 @@ In particular an attacker, even without
 being able to decrypt the message, given they knows part of the message,
 can also modify the content of the ciphertext to a different ciphertext.
 
-Using Usermin, browse to `/home/students/otp/`. You will find a Python
-file named `exercise2.py`.
+Using Usermin, browse to ``/home/students/otp/``. You will find a Python
+file named ```exercise2.py``.
 
 Suppose you are an attacker and you found a way of intercepting an encrypted
 message from a sender, change the message and send it to the receiver as if
@@ -209,16 +209,16 @@ you were the original sender. This is not unrealistic -- it is in fact very
 easy to do in a network, or phish some users to connect to an open Wi-Fi
 network -under your control- in a public place.
 
-In the Python file, the functions `intercept_in` and `intercept_out` have
+In the Python file, the functions ``intercept_in`` and ``intercept_out`` have
 been imported. These can be used respectively to get an intercepted message
 as sent by the sender, and to transmit a message to the receiver.
 
-The function `bytes intercept_in()` returns a Python byte literal, which is
+The function ``bytes intercept_in()`` returns a Python byte literal, which is
 an encrypted ASCII message. You don't know the encryption key for this message,
 and you should not try to find it -- moreover, it will change at every
 intercepted message.
 
-The function `bool intercept_out(bytes)` can be used to transmit a Python
+The function ``bool intercept_out(bytes)`` can be used to transmit a Python
 byte literal to the listening party. For convenience, this function returns
 True when the practical has been completed successfully, and False otherwise.
 If the received message is invalid or if the receiver can't decrypt the
@@ -240,7 +240,7 @@ message using their secret key, a ValueError exception will be thrown.
   Change the Python script to activate a super massive black hole.
 
   Hint:
-    You can use the `strxor` method, which has already been imported
+    You can use the ``strxor`` method, which has already been imported
     into the Python script, from the previous Exercise.
 
   Hint:
