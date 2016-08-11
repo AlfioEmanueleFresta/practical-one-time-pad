@@ -156,7 +156,7 @@ of two words in the English language, which is reasonably small.
 
   This will return a list of all English words of length *n*.
 
-  Moreover, a function has been provided and imported to XOR two byte strings.
+  Moreover, a function has been provided and imported to XOR two byte literals.
   You can express parameters as either a sequence of bytes in hexadecimal
   notation (ie. each byte is in the form ``\x4f``) or as a Python string
   of ASCII characters, e.g.:
@@ -209,13 +209,13 @@ In the Python file, the functions `intercept_in` and `intercept_out` have
 been imported. These can be used respectively to get an intercepted message
 as sent by the sender, and to transmit a message to the receiver.
 
-The function `bytes intercept_in()` returns a Python byte-string, which is
-an encrypted message. You don't know the encryption key for this message,
+The function `bytes intercept_in()` returns a Python byte literal, which is
+an encrypted ASCII message. You don't know the encryption key for this message,
 and you should not try to find it -- moreover, it will change at every
 intercepted message.
 
 The function `bool intercept_out(bytes)` can be used to transmit a Python
-byte-string to the listening party. For convenience, this function returns
+byte literal to the listening party. For convenience, this function returns
 True when the practical has been completed successfully, and False otherwise.
 If the received message is invalid or if the receiver can't decrypt the
 message using their secret key, a ValueError exception will be thrown.
@@ -249,6 +249,5 @@ message using their secret key, a ValueError exception will be thrown.
 
 
 # TODO Replay attacks?
-# TODO Check correct definition for 'byte strings' in Python doc.
 # TODO Complete.
 # TODO Spell checking.
