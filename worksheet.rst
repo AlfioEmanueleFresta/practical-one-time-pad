@@ -188,7 +188,7 @@ ____________
 The term "malleability" refers to the possibility of the ciphertext being
 altered to decrypt to a different plaintext message. This generally is an
 undesiderable property, and makes the system inappropriate for use in any
-context where man-in-the-middle or similar attacks are porssible (e.g.
+context where man-in-the-middle or similar attacks are possible (e.g.
 Internet connections).
 
 In this exercise we will demonstrate that OTP encryption is malleable and
@@ -246,6 +246,12 @@ message using their secret key, a ValueError exception will be thrown.
 
       X XOR Y = (X XOR Z) XOR (Y XOR Z)
 
+
+This problem could also be exploted in replay attacks: these differs from
+man-in-the-middle attacks in the fact that the latters intercept and immediately
+replace the original message with an altered message, while replay attacks
+are executed by using replaying the same message or the altered message at
+a different time.
 
 
 # TODO Replay attacks?
