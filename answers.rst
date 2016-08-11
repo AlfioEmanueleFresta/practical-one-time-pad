@@ -45,6 +45,18 @@ Key Reuse
 Malleability
 ------------
 
+A = Original plaintext message
+
+B = Modified plaintext message
+
+K = Secret key
+
+You want to transmit B XOR K, by expanding it to:
+
+B XOR K = (B XOR A) XOR (K XOR A)
+
+Or, in Python code:
+
 .. code:: python
 
   from cp_otp import strxor, intercept_in, intercept_out
@@ -52,11 +64,11 @@ Malleability
 
   x = intercept_in()  # Intercept the message.
 
-  old = "'Online=1; UserIsPresident=0; ActivateSuperMassiveBlackHole=0;'"  # Message that will be transmitted
-  new = "'Online=1; UserIsPresident=1; ActivateSuperMassiveBlackHole=1;'"  # Message that I want to transmit
+  a = "'Online=1; UserIsPresident=0; ActivateSuperMassiveBlackHole=0;'"  # Message that will be transmitted
+  b = "'Online=1; UserIsPresident=1; ActivateSuperMassiveBlackHole=1;'"  # Message that I want to transmit
 
-  diff = strxor(old, new)  # Calculate the difference between the messages
-  y = strxor(x, diff)      # Apply the difference to the intercepted message
+  diff = strxor(a, b)  # Calculate the difference between the messages
+  y = strxor(x, diff)  # Apply the difference to the intercepted message
 
   intercept_out(y)  # Forward to the other party.
 

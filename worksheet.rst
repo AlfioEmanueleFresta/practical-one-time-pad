@@ -174,3 +174,81 @@ of two words in the English language, which is reasonably small.
     You can use Python's built-in `itertools.combinations` to get
     possible pairs from a list of words. Learn more about this
     function at https://docs.python.org/3.5/library/itertools.html.
+
+
+.. topic:: Exercise 2
+
+  Now, for each possible pair of English words, calculate the key.
+
+
+
+Malleability
+____________
+
+The term "malleability" refers to the possibility of the ciphertext being
+altered to decrypt to a different plaintext message. This generally is an
+undesiderable property, and makes the system inappropriate for use in any
+context where man-in-the-middle or similar attacks are porssible (e.g.
+Internet connections).
+
+In this exercise we will demonstrate that OTP encryption is malleable and
+susceptible to ciphertext alteration. In particular an attacker, even without
+being able to decrypt the message, given they knows part of the message,
+they can also modify the content of the ciphertext to a different ciphertext.
+
+Using Usermin, browse to `/home/students/otp/`. You will find a Python
+file named `exercise2.py`.
+
+Suppose you are an attacker and you found a way of intercepting an encrypted
+message from a sender, change the message and send it to the receiver as if
+you were the original sender. This is not unrealistic -- it is in fact very
+easy to do in a network, or phish some users to connect to an open Wi-Fi
+network -under your control- in a public place.
+
+In the Python file, the functions `intercept_in` and `intercept_out` have
+been imported. These can be used respectively to get an intercepted message
+as sent by the sender, and to transmit a message to the receiver.
+
+The function `bytes intercept_in()` returns a Python byte-string, which is
+an encrypted message. You don't know the encryption key for this message,
+and you should not try to find it -- moreover, it will change at every
+intercepted message.
+
+The function `bool intercept_out(bytes)` can be used to transmit a Python
+byte-string to the listening party. For convenience, this function returns
+True when the practical has been completed successfully, and False otherwise.
+If the received message is invalid or if the receiver can't decrypt the
+message using their secret key, a ValueError exception will be thrown.
+
+
+.. topic:: Exercise 3
+
+  Even if you don't know the secret key, suppose you find out the content of
+  the plaintext which is encrypted. For the purpose of this pracical, you can
+  do so by simply running the Python script unaltered -- which simply wires
+  the input to the output, allowing for normal communication between the
+  parties:
+
+  .. code:: bash
+    cd /home/student/otp/
+    python3 exercise1.py
+
+  Change the Python script to activate a super massive black hole.
+
+  Hint:
+    You can use the `strxor` method, which has already been imported
+    into the Python script, from the previous Exercise.
+
+  Hint:
+    You want to generate B XOR K, but you don't know K.
+
+    Remember the associativity property of the XOR operator:
+
+      X XOR Y = (X XOR Z) XOR (Y XOR Z)
+
+
+
+# TODO Replay attacks?
+# TODO Check correct definition for 'byte strings' in Python doc.
+# TODO Complete.
+# TODO Spell checking.
