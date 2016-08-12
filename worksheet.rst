@@ -12,7 +12,7 @@ web shell (port 12322) and Usermin (port 12323).
 XOR (⊕, Exclusive OR) operator
 ______________________________
 
-The XOR operator is the basis for OTP encryption. This is a very simple bitwise
+The XOR logical operator is the basis for OTP encryption. This is a very simple bitwise
 operator that essentially means 'either one, but not both'.
 
 ::
@@ -33,10 +33,10 @@ One-Time Pad
 ____________
 
 The One-Time Pad is an encryption technique that is very easy to understand and
-use. It has also been demonstrated that it can't be cracked if used correctly.
+implement. It has also been demonstrated that it can't be cracked if used correctly.
 
-The idea behind One-Time Pads is very simple. If you XOR a message with a
-completely random key, you will get a ciphertext. If you XOR the ciperthext again
+The idea behind One-Time Pads is very simple. If you XOR a binary message with a
+completely random key, you will get a ciphertext. If you XOR the ciphertext again
 with the same key, you get the original message back.
 
 In the following example, each letter has been encoded to its 8-bits ASCII
@@ -48,13 +48,13 @@ equivalent. The XOR operation is applied bitwise to each letter.
 ::
 
   +------------+------------+-------------------------------------------------------+
-  | Message    | M          | ...s........e........c........r........e........t.... |
+  | Message    | M          |    s        e        c        r        e        t     |
   |            |            | 01110011 01100101 01100011 01110010 01100101 01110100 |
   +------------+------------+-------------------------------------------------------+
-  | Key        | K          | ...m........i........-........k........e........y.... |
-  |            |            | 01101101 01101001 00101101 01101011 01100101 01111001 |
+  | Key        | K          |    m        y        -        k        e        y     |
+  |            |            | 01101101 01111001 00101101 01101011 01100101 01111001 |
   +------------+------------+-------------------------------------------------------+
-  | Ciphertext | C = M ⊕ K  | 00011110 00001100 01001110 00011001 00000000 00001101 |
+  | Ciphertext | C = M ⊕ K  | 00011110 00011100 01001110 00011001 00000000 00001101 |
   +------------+------------+-------------------------------------------------------+
 
 
@@ -63,33 +63,49 @@ equivalent. The XOR operation is applied bitwise to each letter.
 ::
 
    +------------+------------+-------------------------------------------------------+
-   | Ciphertext | C          | 00011110 00001100 01001110 00011001 00000000 00001101 |
+   | Ciphertext | C          | 00011110 00011100 01001110 00011001 00000000 00001101 |
    +------------+------------+-------------------------------------------------------+
-   | Key        | K          | ...m........i........-........k........e........y.... |
-   |            |            | 01101101 01101001 00101101 01101011 01100101 01111001 |
+   | Key        | K          |    m        y        -        k        e        y     |
+   |            |            | 01101101 01111001 00101101 01101011 01100101 01111001 |
    +------------+------------+-------------------------------------------------------+
-   | Message    | M = C ⊕ K  | ...s........e........c........r........e........t.... |
+   | Message    | M = C ⊕ K  |    s        e        c        r        e        t     |
    |            |            | 01110011 01100101 01100011 01110010 01100101 01110100 |
    +------------+------------+-------------------------------------------------------+
 
 
 The ciphertext has been shown to be impossible to decrypt
 without using the original key. No amount of computing power could crack
-the cipertext: a n-characters cypertext could decrypt to any
+the ciphertext: a n-characters ciphertext could decrypt to any
 n-characters message, given the right key.
 
-The problem with technique is that safe One-Time Pad encryption therefore
-requires a random key which is at least as long as the message to encrypt.
+For example, the same ciphertext as above could be decrypted to a different, and
+completely plausible message, by using a different key:
+
+::
+
+   +------------+------------+-------------------------------------------------------+
+   | Ciphertext | C          | 00011110 00001100 01001110 00011001 00000000 00001101 |
+   +------------+------------+-------------------------------------------------------+
+   | Key        | K          |    j        y        /        z        u        }     |
+   |            |            | 01101010 01111001 00101111 01111010 01110101 01111101 |
+   +------------+------------+-------------------------------------------------------+
+   | Message    | M = C ⊕ K  |    t        e        a        c        u        p     |
+   |            |            | 01110100 01100101 01100001 01100011 01110101 01110000 |
+   +------------+------------+-------------------------------------------------------+
+
+
+The main problem with technique is that safe One-Time Pad encryption
+requires a key which is completely random and at least as long as the message to encrypt.
 This can be unpractical or very inefficient in some cases where the amount of
-bandwith available is a strong constraint.
+bandwidth available is a constraint.
 
 This key also needs to be communicated safely to the other party, which simply
 shifts the information protection problem to the key, instead of the message,
-if there is no trusted communication channel.
+if there is no other trusted communication channel.
 
 The "One-Time Pad" name is a consequence of the physical pads that were exchanged
-by the parties before splitting up. These were booklets of random numbers, usually
-divided into small blocks, which should only be used once.
+by the parties before separating. These were booklets of random numbers, usually
+divided into small blocks, which would only be used once.
 
 
 Key Reuse Attacks
@@ -98,10 +114,11 @@ _________________
 Even this method is theoretically infallible, simple mistakes in its use can
 have very bad consequences. For example, one could be tempted to reuse a key
 or part of a key, but as we will demonstrate in this exercise, an attacker
-can utilise some clever methods to quickly calculate a very small number of
-possible original messages.
+can exploit a few properties of the system to quickly calculate a very small
+subset of possible original messages.
 
-Key Reuse attacks are based on the associativity property of the XOR operator:
+Key Reuse attacks are generally based on the associativity property of the
+XOR operator:
 
   A XOR B = (A XOR C) XOR (B XOR C)
 
@@ -130,27 +147,27 @@ we get:
 
 An attacker could easily XOR two encrypted messages, and compare the result
 with the XOR result for all pairs of words in the English dictionary. Most
-of these pairs will not make sense, but with any luck, a pair will.
+of these pairs will not make sense, but with any luck, one pair will.
 
 To make things easier for the attacker, the XOR operator is commutative:
 
   M1 XOR M2 = M2 XOR M1
 
 Therefore, the attacker will only need to try only all possible combinations
-of two words in the English language, which is reasonably small.
+of two words in the English language, which is a reasonably small number,
+and is computable by a modern computer in a matter of seconds.
+
+Using Usermin, browse to ``/home/students/otp/```. You will find a Python
+file named ```exercise1.py``. You can edit this file from the Usermin web
+interface.
+
+In the Python file, the variables c1 and c2 contains two secret words
+that have been encrypted using OTP. Unfortunately, the sender forgot
+to cross the used secret key and ended up reusing the same key for both
+the secret words.
 
 
 .. topic:: Exercise 1
-
-  Using Usermin, browse to ``/home/students/otp/```. You will find a Python
-  file named ```exercise1.py``.
-
-  You can edit this file from the Usermin web interface.
-
-  In the Python file, the variables c1 and c2 contains two secret words
-  that have been encrypted using OTP. Unfortunately, the sender forgot
-  to cross the used secret key and ended up reusing the same key for both
-  the secret words.
 
   Calculate the possible words pairs that have been encrypted. Try and
   determine which of the pairs correspond to the secret message.
@@ -168,7 +185,7 @@ of two words in the English language, which is reasonably small.
 
   Moreover, a function has been provided and imported to XOR two byte literals.
   You can express parameters as either a sequence of bytes in hexadecimal
-  notation (ie. each byte is in the form ``\x4f``) or as a Python string
+  notation (i.e. each byte is in the form ``\x4f``) or as a Python string
   of ASCII characters, e.g.:
 
   .. code:: python
@@ -181,14 +198,19 @@ of two words in the English language, which is reasonably small.
 
 
   Hint:
-    You can use Python's built-in `itertools.combinations` to get
+    You can use Python's built-in ``itertools.combinations`` to get
     possible pairs from a list of words. Learn more about this
     function at https://docs.python.org/3.5/library/itertools.html.
+
+  Note:
+    The script should not take more than 3 minutes to execute
+    on an average computer for any word length.
 
 
 .. topic:: Exercise 2
 
-  Now, for each possible pair of English words, calculate the key.
+  Now change your script so that  for each candidate pair of English words,
+  it will calculate the key that may have been used.
 
 
 
@@ -220,29 +242,32 @@ In the Python file, the functions ``intercept_in`` and ``intercept_out`` have
 been imported. These can be used respectively to get an intercepted message
 as sent by the sender, and to transmit a message to the receiver.
 
+::
+
+  Sender  --( intercept_in )-->  You  --( intercept_out )-->  Receiver
+
 The function ``bytes intercept_in()`` returns a Python byte literal, which is
 an encrypted ASCII message. You don't know the encryption key for this message,
 and you should not try to find it -- moreover, it will change at every
 intercepted message.
 
 The function ``bool intercept_out(bytes)`` can be used to transmit a Python
-byte literal to the listening party. For convenience, this function returns
+byte literal to the Receiver. For your convenience, this function returns
 True when the practical has been completed successfully, and False otherwise.
 If the received message is invalid or if the receiver can't decrypt the
 message using their secret key, a ValueError exception will be thrown.
 
+Even if you don't know the secret key, suppose you find out the content of
+the plaintext which is encrypted. For the purpose of this practical, you can
+do so by simply running the Python script unaltered -- which simply wires
+the input to the output, allowing for normal communication between the
+parties:
+
+.. code:: bash
+  cd /home/student/otp/
+  python3 exercise1.py
 
 .. topic:: Exercise 3
-
-  Even if you don't know the secret key, suppose you find out the content of
-  the plaintext which is encrypted. For the purpose of this pracical, you can
-  do so by simply running the Python script unaltered -- which simply wires
-  the input to the output, allowing for normal communication between the
-  parties:
-
-  .. code:: bash
-    cd /home/student/otp/
-    python3 exercise1.py
 
   Change the Python script to activate a super massive black hole.
 
@@ -258,12 +283,8 @@ message using their secret key, a ValueError exception will be thrown.
       X XOR Y = (X XOR Z) XOR (Y XOR Z)
 
 
-This problem could also be exploted in replay attacks: these differs from
-man-in-the-middle attacks in the fact that the latters intercept and immediately
+Ciphertext malleability could also be exploited in replay attacks: these differs from
+man-in-the-middle attacks in the fact that the latter intercept and immediately
 replace the original message with an altered message, while replay attacks
 are executed by using replaying the same message or the altered message at
 a different time.
-
-
-# TODO Complete.
-# TODO Spell checking.
