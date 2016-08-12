@@ -157,8 +157,8 @@ Therefore, the attacker will only need to try only all possible combinations
 of two words in the English language, which is a reasonably small number,
 and is computable by a modern computer in a matter of seconds.
 
-Using Usermin, browse to ``/home/students/otp/```. You will find a Python
-file named ```exercise1.py``. You can edit this file from the Usermin web
+Using Usermin, browse to ``/home/students/otp/``. You will find a Python
+file named ``exercise1.py``. You can edit this file from the Usermin web
 interface.
 
 In the Python file, the variables c1 and c2 contains two secret words
@@ -230,7 +230,7 @@ being able to decrypt the message, given they knows part of the message,
 can also modify the content of the ciphertext to a different ciphertext.
 
 Using Usermin, browse to ``/home/students/otp/``. You will find a Python
-file named ```exercise2.py``.
+file named ``exercise2.py``.
 
 Suppose you are an attacker and you found a way of intercepting an encrypted
 message from a sender, change the message and send it to the receiver as if
