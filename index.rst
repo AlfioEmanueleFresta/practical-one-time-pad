@@ -9,7 +9,6 @@ Contents:
 
     introduction
     worksheet
-    extension
     conclusion
     answers
 

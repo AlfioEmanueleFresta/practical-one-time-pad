@@ -190,11 +190,24 @@ the secret words.
 
   .. code:: python
 
-    >>> strxor(b'secret', b'secure')
+    >>> strxor(b'secret', b'secure')  # You can use byte literals, ...
+    b'\x00\x00\x00\x07\x17\x11'
+
+    >>> strxor("secret", "secure")    # ... or ASCII strings.
     b'\x00\x00\x00\x07\x17\x11'
 
     >>> strxor(b'\x00\x00\x00\x07\x17\x11', b'secure')
     b'secret'
+
+
+  Note:
+    The script needs Python 3, so you'll need to use
+    the ``python3`` command to execute the script from the
+    Web shell, e.g.:
+
+    .. code:: bash
+      cd /home/student/otp/
+      python3 exercise1.py
 
 
   Hint:
@@ -265,7 +278,8 @@ parties:
 
 .. code:: bash
   cd /home/student/otp/
-  python3 exercise1.py
+  python3 exercise2.py
+
 
 .. topic:: Exercise 3
 
