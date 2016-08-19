@@ -209,6 +209,7 @@ the secret words.
     Web shell, e.g.:
 
     .. code:: bash
+
       cd /home/student/otp/
       python3 exercise1.py
 
