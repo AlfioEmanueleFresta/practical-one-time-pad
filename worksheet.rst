@@ -99,9 +99,9 @@ requires a key which is completely random and at least as long as the message to
 This can be unpractical or very inefficient in some cases where the amount of
 bandwidth available is a constraint.
 
-This key also needs to be communicated safely to the other party, which simply
-shifts the information protection problem to the key, instead of the message,
-if there is no other trusted communication channel.
+This key also needs to be communicated safely to the other party – which simply
+shifts the information protection problem to the key instead of the message,
+if there isn’t another trusted communication channel.
 
 The "One-Time Pad" name is a consequence of the physical pads that were exchanged
 by the parties before separating. These were booklets of random numbers, usually
@@ -120,7 +120,7 @@ subset of possible original messages.
 Key Reuse attacks are generally based on the associativity property of the
 XOR operator:
 
-  A XOR B = (A XOR C) XOR (B XOR C)
+  A **XOR** B **=** (A **XOR** C) **XOR** (B **XOR** C)
 
 In fact, given:
 
@@ -132,17 +132,17 @@ In fact, given:
 
 One could write:
 
-  M1 XOR M2 = (M1 XOR K) XOR (M2 XOR K)
+  M1 **XOR** M2 = (M1 **XOR** K) **XOR** (M2 XOR K)
 
 If we assign names C1 and C2 to the ciphertexts,
 
-  C1 = M1 XOR K
+  C1 **=** M1 **XOR** K
 
-  C2 = M2 XOR K
+  C2 **=** M2 **XOR** K
 
 we get:
 
-  M1 XOR M2 = C1 XOR C2
+  M1 **XOR** M2 **=** C1 **XOR** C2
 
 
 An attacker could easily XOR two encrypted messages, and compare the result
@@ -151,7 +151,7 @@ of these pairs will not make sense, but with any luck, one pair will.
 
 To make things easier for the attacker, the XOR operator is commutative:
 
-  M1 XOR M2 = M2 XOR M1
+  M1 **XOR** M2 = M2 **XOR** M1
 
 Therefore, the attacker will only need to try only all possible combinations
 of two words in the English language, which is a reasonably small number,
@@ -199,6 +199,9 @@ the secret words.
     >>> strxor(b'\x00\x00\x00\x07\x17\x11', b'secure')
     b'secret'
 
+  The script should not take more than 3 minutes to execute
+  on an average computer for any word length.
+
 
   Note:
     The script needs Python 3, so you'll need to use
@@ -215,9 +218,6 @@ the secret words.
     possible pairs from a list of words. Learn more about this
     function at https://docs.python.org/3.5/library/itertools.html.
 
-  Note:
-    The script should not take more than 3 minutes to execute
-    on an average computer for any word length.
 
 
 .. topic:: Exercise 2
@@ -236,20 +236,19 @@ undesiderable property, and makes the system inappropriate for use in any
 context where man-in-the-middle or similar attacks are possible (e.g.
 Internet connections).
 
-In this exercise we will demonstrate that OTP encryption is malleable and
+In this exercise we will demonstrate that One-Time Pad encryption is malleable and
 susceptible to ciphertext alteration, also known as bit-flipping attacks.
-In particular an attacker, even without
-being able to decrypt the message, given they knows part of the message,
-can also modify the content of the ciphertext to a different ciphertext.
+In particular an attacker that knows part of the message can also modify the content of the
+ciphertext to a different ciphertext, even without being able to decrypt the message.
 
 Using Usermin, browse to ``/home/students/otp/``. You will find a Python
 file named ``exercise2.py``.
 
-Suppose you are an attacker and you found a way of intercepting an encrypted
+Suppose you are an attacker and you found a way to intercept an encrypted
 message from a sender, change the message and send it to the receiver as if
 you were the original sender. This is not unrealistic -- it is in fact very
-easy to do in a network, or phish some users to connect to an open Wi-Fi
-network -under your control- in a public place.
+easy to do in a network, such as an open Wi-Fi network in a public place
+which is under your control where you can phish users to connect.
 
 In the Python file, the functions ``intercept_in`` and ``intercept_out`` have
 been imported. These can be used respectively to get an intercepted message
@@ -294,10 +293,10 @@ parties:
 
     Remember the associativity property of the XOR operator:
 
-      X XOR Y = (X XOR Z) XOR (Y XOR Z)
+      X **XOR** Y = (X **XOR** Z) **XOR** (Y **XOR** Z)
 
 
-Ciphertext malleability could also be exploited in replay attacks: these differs from
+Ciphertext malleability could also be exploited in replay attacks: these differ from
 man-in-the-middle attacks in the fact that the latter intercept and immediately
 replace the original message with an altered message, while replay attacks
 are executed by using replaying the same message or the altered message at

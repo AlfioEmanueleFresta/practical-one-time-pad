@@ -4,13 +4,13 @@ Conclusion
 Summary: Important points
 _________________________
 
-Strong cryptographic primitives exist, and the One-Time Pad cipher is one of these.
+Strong cryptographic primitives exist and the One-Time Pad cipher is one of these.
 Nonetheless, one should not be fooled into believing that strong primitives
 are enough to make strong systems. Strong primitives may also not
 have all of those properties that are nowadays expected from cryptosystems such as
 information integrity and provenance guarantee.
 
-Moreover cryptosystems, for each of their properties, are as strong as their weakest
+Moreover, cryptosystems, for each of their properties, are as strong as their weakest
 component and therefore need exhaustive analysis before being put to use.
 
 In fact, you should generally never try to build your own cryptosystem,
@@ -27,7 +27,7 @@ This can often be unfeasible or impractical.
 
 Stream Ciphers are based on the concept of One-Time Pads, but instead of using
 a very long key, they use a short initial *seed* - such as a password known
-by both parties -. This *seed* is fed into a *keystream generator* which
+by both parties. This *seed* is fed into a *keystream generator* which
 expands the key to a very long or infinite sequence -- a *keystream*. Then,
 the keystream is used to encrypt the message.
 
