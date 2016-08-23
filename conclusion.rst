@@ -15,7 +15,7 @@ component and therefore need exhaustive analysis before being put to use.
 
 In fact, you should generally never try to build your own cryptosystem,
 nor implement or endorse software that utilises a certain cryptosystem if you
-don't believe it's being used correctly.
+don't believe the software is using the cryptosystem correctly.
 
 
 Stream Ciphers

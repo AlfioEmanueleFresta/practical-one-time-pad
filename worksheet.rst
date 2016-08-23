@@ -5,14 +5,13 @@ Preparation
 ___________
 
 Start the Virtual Machine and use your favourite browser to navigate to the
-web shell (port 12322) and Usermin (port 12323).
-
+web shell (port 12319) and Usermin (port 12323).
 
 
 XOR (⊕, Exclusive OR) operator
 ______________________________
 
-The XOR logical operator is the basis for OTP encryption. This is a very simple bitwise
+The XOR logical operator is the basis for One-Time Pad encryption. This is a very simple bitwise
 operator that essentially means 'either one, but not both'.
 
 ::
@@ -32,7 +31,7 @@ operator that essentially means 'either one, but not both'.
 One-Time Pad
 ____________
 
-The One-Time Pad is an encryption technique that is very easy to understand and
+The *One-Time Pad* (or OTP) is an encryption technique that is very easy to understand and
 implement. It has also been demonstrated that it can't be cracked if used correctly.
 
 The idea behind One-Time Pads is very simple. If you XOR a binary message with a
@@ -76,7 +75,7 @@ equivalent. The XOR operation is applied bitwise to each letter.
 The ciphertext has been shown to be impossible to decrypt
 without using the original key. No amount of computing power could crack
 the ciphertext: a n-characters ciphertext could decrypt to any
-n-characters message, given the right key.
+message of the same length, given the right key.
 
 For example, the same ciphertext as above could be decrypted to a different, and
 completely plausible message, by using a different key:
@@ -104,14 +103,16 @@ shifts the information protection problem to the key instead of the message,
 if there isn’t another trusted communication channel.
 
 The "One-Time Pad" name is a consequence of the physical pads that were exchanged
-by the parties before separating. These were booklets of random numbers, usually
-divided into small blocks, which would only be used once.
+by the parties before separating. For example, the KGB used pads that could fit in
+the palm of one's hand. These were pads of random numbers, usually
+divided into small blocks, which would only be used once and the used
+part would be destroyed.
 
 
 Key Reuse Attacks
 _________________
 
-Even this method is theoretically infallible, simple mistakes in its use can
+Even though this method is theoretically infallible, simple mistakes in its use can
 have very bad consequences. For example, one could be tempted to reuse a key
 or part of a key, but as we will demonstrate in this exercise, an attacker
 can exploit a few properties of the system to quickly calculate a very small
@@ -161,13 +162,11 @@ Using Usermin, browse to ``/home/students/otp/``. You will find a Python
 file named ``exercise1.py``. You can edit this file from the Usermin web
 interface.
 
-In the Python file, the variables c1 and c2 contains two secret words
-that have been encrypted using OTP. Unfortunately, the sender forgot
-to cross the used secret key and ended up reusing the same key for both
-the secret words.
-
-
 .. topic:: Exercise 1
+
+  In the Python file, the variables c1 and c2 contains two secret words
+  that have been encrypted using OTP. Unfortunately, the parties have reused
+  the same key for both messages.
 
   Calculate the possible words pairs that have been encrypted. Try and
   determine which of the pairs correspond to the secret message.
@@ -183,7 +182,7 @@ the secret words.
 
   This will return a list of all English words of length *n*.
 
-  Moreover, a function has been provided and imported to XOR two byte literals.
+  A function has been provided and imported to XOR two byte literals.
   You can express parameters as either a sequence of bytes in hexadecimal
   notation (i.e. each byte is in the form ``\x4f``) or as a Python string
   of ASCII characters, e.g.:
@@ -223,8 +222,11 @@ the secret words.
 
 .. topic:: Exercise 2
 
-  Now change your script so that  for each candidate pair of English words,
+  Now change your script so that for each candidate pair of English words,
   it will calculate the key that may have been used.
+
+  Hint:
+    Remember that both words in each pair have used the same key.
 
 
 
@@ -283,7 +285,7 @@ parties:
 
 .. topic:: Exercise 3
 
-  Change the Python script to activate a super massive black hole.
+  Change the Python script to activate a supermassive black hole.
 
   Hint:
     You can use the ``strxor`` method, which has already been imported
