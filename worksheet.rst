@@ -285,7 +285,7 @@ parties:
 
 .. topic:: Exercise 3
 
-  Change the Python script to activate a supermassive black hole.
+  Change the Python script to generate a supermassive black hole.
 
   Hint:
     You can use the ``strxor`` method, which has already been imported
