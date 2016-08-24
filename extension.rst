@@ -9,11 +9,15 @@ One of the main issues with One-Time Pad encryption is the need for a random
 key at least as long as the message that is to be transmitted over the channel.
 This can often be unfeasible or impractical.
 
-Stream Ciphers are based on the concept of One-Time Pads, but instead of using
-a very long key, they use a short initial *seed* - such as a password known
-by both parties. This *seed* is fed into a *keystream generator* which
-expands the key to a very long or infinite sequence of keys -- a *keystream*.
-Then, each key in the keystream is used to encrypt a block of the message.
+**Stream Ciphers are based on the concept of One-Time Pads, but instead of using**
+**a very long key, they use a short initial** *seed* **- such as a key known**
+**by both parties.**
+
+**This** *seed* **is fed into a** *keystream generator* **which**
+**expands the key to a very long or infinite sequence of keys -- a** *keystream***.**
+
+**Then, each key in the keystream is used to encrypt a block of the message,**
+**using a XOR operation.**
 
 You can generate a sequence of keys from a given seed using the following
 code:
