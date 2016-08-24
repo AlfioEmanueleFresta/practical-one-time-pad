@@ -19,14 +19,16 @@ This can often be unfeasible or impractical.
 **Then, each key in the keystream is used to encrypt a block of the message,**
 **using a XOR operation.**
 
-You can generate a sequence of keys from a given seed using the following
-code:
+For your convenience, you can generate a sequence of keys from a given seed
+using the provided ``keystream_generator``, e.g.:
 
 .. code:: python
 
   from extension.utils import keystream_generator
 
 
+  # Create a keystream generator which will generate 8 bytes keys,
+  #  given the initial 'seed'.
   keystream = keystream_generator(seed="This is my initial seed",
                                   key_length=8)
 
@@ -59,8 +61,11 @@ keys.
 
 .. topic:: Extension Exercise
 
-  Using the keystream generator introduced above, with a key length of 8
-  bytes, create a stream cipher.
+  Using Usermin, edit the ``extension.py`` file. This contains a template for
+  this exercise.
+
+  Using the keystream generator introduced above, with a keys length of 8
+  bytes, write a stream cipher function.
 
   Note that the length of the message may not be a multiple of the length
   of the keys in the keystream. You should pad your message with NULL bytes
@@ -78,8 +83,8 @@ keys.
     # Key to use as a seed for the keystream generator
     key = b'I will be very useful as a key for your encryption task, curious stranger'
 
-  Finally, use your encrypted message as a key to decrypt the following
-  message:
+  Finally, use your encrypted message **as a key** to decrypt the following
+  message, using the same stream cipher:
 
   .. code:: python
 
