@@ -18,26 +18,6 @@ nor implement or endorse software that utilises a certain cryptosystem if you
 don't believe the software is using the cryptosystem correctly.
 
 
-Stream Ciphers
-______________
-
-One of the main issues with One-Time Pad encryption is the need for a random
-key at least as long as the message that is to be transmitted over the channel.
-This can often be unfeasible or impractical.
-
-Stream Ciphers are based on the concept of One-Time Pads, but instead of using
-a very long key, they use a short initial *seed* - such as a password known
-by both parties. This *seed* is fed into a *keystream generator* which
-expands the key to a very long or infinite sequence -- a *keystream*. Then,
-the keystream is used to encrypt the message.
-
-While this makes stream ciphers very convenient, it breaks the theoretical
-security property of OTP ciphers, and its security depends solely on the
-properties of the *seed* and the *keystream generator* used for the cipher.
-
-Moreover, Stream Ciphers don't solve the malleability issue of One-Time Pads.
-
-
 Ethical Issues
 ______________
 
