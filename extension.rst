@@ -67,10 +67,11 @@ keys.
   Using the keystream generator introduced above, with a keys length of 8
   bytes, write a stream cipher function.
 
-  Note that the length of the message may not be a multiple of the length
-  of the keys in the keystream. You should pad your message with NULL bytes
-  (``b'\x00'`` in Python) at the end of the message, until it is of an acceptable
-  length.
+  Note:
+    The length of the message may not be a multiple of the length
+    of the keys in the keystream. You should pad your message with NULL bytes
+    (``b'\x00'`` in Python) at the end of the message, until it is of an acceptable
+    length.
 
   Use your stream cipher to encrypt the following message, with the key
   provided:

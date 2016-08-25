@@ -158,7 +158,7 @@ Therefore, the attacker will only need to try only all possible combinations
 of two words in the English language, which is a reasonably small number,
 and is computable by a modern computer in a matter of seconds.
 
-Using Usermin, browse to ``/home/students/otp/``. You will find a Python
+Using Usermin, browse to ``/home/student/otp/``. You will find a Python
 file named ``exercise1.py``. You can edit this file from the Usermin web
 interface.
 
@@ -171,7 +171,7 @@ interface.
   Calculate the possible words pairs that have been encrypted. Try and
   determine which of the pairs correspond to the secret message.
 
-  You should NOT try to crack the secret key.
+  You should NOT try to crack the secret key directly.
 
   For your convenience, an English dictionary has been provided and imported
   into the script. You can read all words of length *n* using:
@@ -244,7 +244,7 @@ susceptible to ciphertext alteration, also known as bit-flipping attacks.
 In particular an attacker that knows part of the message can also modify the content of the
 ciphertext to a different ciphertext, even without being able to decrypt the message.
 
-Using Usermin, browse to ``/home/students/otp/``. You will find a Python
+Using Usermin, browse to ``/home/student/otp/``. You will find a Python
 file named ``exercise2.py``.
 
 Suppose you are an attacker and you found a way to intercept an encrypted
