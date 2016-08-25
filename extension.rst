@@ -14,7 +14,7 @@ This can often be unfeasible or impractical.
 **by both parties.**
 
 **This** *seed* **is fed into a** *keystream generator* **which**
-**expands the key to a very long or infinite sequence of keys -- a** *keystream***.**
+**expands the key to a very long or infinite sequence of keys -- a** *keystream* **.**
 
 **Then, each key in the keystream is used to encrypt a block of the message,**
 **using a XOR operation.**
