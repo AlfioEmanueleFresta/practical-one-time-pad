@@ -162,7 +162,7 @@ Using Usermin, browse to ``/home/student/otp/``. You will find a Python
 file named ``exercise1.py``. You can edit this file from the Usermin web
 interface.
 
-.. topic:: Exercise 1
+.. topic:: Exercise 1.1
 
   In the Python file, the variables c1 and c2 contains two secret words
   that have been encrypted using OTP. Unfortunately, the parties have reused
@@ -213,14 +213,12 @@ interface.
       python3 exercise1.py
 
 
-  Hint:
-    You can use Python's built-in ``itertools.combinations`` to get
-    possible pairs from a list of words. Learn more about this
-    function at https://docs.python.org/3.5/library/itertools.html.
+    The script uses Python's built-in ``itertools.combinations`` to get
+    all word pairs (combinations) from the list of words.
 
 
 
-.. topic:: Exercise 2
+.. topic:: Exercise 1.2
 
   Now change your script so that for each candidate pair of English words,
   it will calculate the key that may have been used.
@@ -261,12 +259,12 @@ as sent by the sender, and to transmit a message to the receiver.
 
   Sender  --( intercept_in )-->  You  --( intercept_out )-->  Receiver
 
-The function ``bytes intercept_in()`` returns a Python byte literal, which is
+The function ``intercept_in()`` returns a Python byte literal, which is
 an encrypted ASCII message. You don't know the encryption key for this message,
 and you should not try to find it -- moreover, it will change at every
 intercepted message.
 
-The function ``bool intercept_out(bytes)`` can be used to transmit a Python
+The function ``intercept_out(bytes)`` can be used to transmit a Python
 byte literal to the Receiver. For your convenience, this function returns
 True when the practical has been completed successfully, and False otherwise.
 If the received message is invalid or if the receiver can't decrypt the
@@ -283,7 +281,7 @@ parties:
   python3 exercise2.py
 
 
-.. topic:: Exercise 3
+.. topic:: Exercise 2
 
   Change the Python script to generate a supermassive black hole.
 

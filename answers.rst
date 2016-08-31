@@ -42,6 +42,49 @@ Key Reuse
                 % (m1, m2, key))
 
 
+Alternatively, a faster implementations could take advantage of the speed
+of Python's sets -which are internally stored as hash maps-, as well as the
+fast Python's ``in`` operator, e.g.:
+
+.. code:: python
+
+  from cp_otp import strxor
+  from cp_dictionary import list_of_words
+  from itertools import combinations
+
+
+  # Intercepted unintelligible ciphertexts
+  c1 = b'\x0b\x0e\x1e\x0b\x17'
+  c2 = b'\x15\x0a\x1b\x1d\x01'
+
+  # Get a list of English words from a dictionary
+  words = list_of_words(of_length=len(c1))
+
+  # Get C1 XOR C2
+  c1_xor_c2 = strxor(c1, c2)
+
+  # Create a set for O(1) search
+  wset  = set(words)
+
+  for m1 in words:
+
+      m2 = strxor(m1, c1_xor_c2)
+      m2 = m2.decode('ascii')  # Convert bytes literal to string
+
+      if m2 in wset:  # If m2 is also a word
+
+        # Calculate the key
+        key = strxor(m1, c1)
+
+        # Announce our exciting discovery.
+        print("Candidate found: m1='%s', m2='%s', key='%s'"
+              % (m1, m2, key))
+
+
+The latter example generally runs in less than a tenth of a second, as opposed
+to the few seconds necessary to run the first example.
+
+
 Malleability
 ------------
 
